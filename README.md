@@ -264,3 +264,25 @@ Why Crucial: Reduces liability by outsourcing sensitive financial data handling 
 
 Implementation: Maintain detailed logs of authentication attempts, failed payments, and suspicious activities, with alerting mechanisms.
 Why Crucial: Helps detect breaches or fraudulent behavior early and provides traceability for security audits.
+
+## CI/CD Pipelines
+
+Continuous Integration (CI) is the practice of automatically building and testing code whenever developers make changes, while Continuous Deployment/Delivery (CD) automates the release of those changes into staging or production environments.
+
+For this project, CI/CD pipelines are important because they:
+
+Ensure new features and bug fixes are tested before deployment, reducing errors in production.
+
+Speed up development by automating repetitive tasks like testing, building, and deployment.
+
+Maintain consistency across environments (using tools like Docker), which helps avoid “it works on my machine” issues.
+
+Tools that could be used include:
+
+GitHub Actions → for automating builds, tests, and deployments directly from GitHub.
+
+Docker → for containerizing applications to ensure consistent environments across development and production.
+
+Jenkins or GitLab CI/CD → for customizable automation pipelines.
+
+Kubernetes (optional at scale) → for managing containerized deployments.
