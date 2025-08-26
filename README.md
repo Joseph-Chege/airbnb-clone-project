@@ -23,27 +23,12 @@ GraphQL
 Github
 
 ## Project Goals
-
-1.Hands-on GitHub Repository Management:
-Learn to initialize and structure a project repository, adhering to industry best practices.
-
-2.Team Role Documentation:
-Understand and articulate the responsibilities of various team members, fostering collaboration in real-world scenarios.
-
-3.Technology Stack Breakdown:
-Explore the technologies used in a scalable project and their specific contributions to achieving project goals.
-
-4.Database Design Proficiency:
-Plan and document a relational database structure with entities, attributes, and relationships that mirror real-world requirements.
-
-5.Feature-Driven Development:
-Identify and describe core features of the application, focusing on their relevance to the user experience and business logic.
-
-6.API Security Fundamentals:
-Implement and document key security measures to safeguard application data and ensure secure transactions.
-
-7.CI/CD Pipeline Integration:
-Gain insights into setting up automated development pipelines, boosting efficiency and minimizing errors during the deployment phase.
+1.User Management: Implement a secure system for user registration, authentication, and profile management.
+2.Property Management: Develop features for property listing creation, updates, and retrieval.
+3.Booking System: Create a booking mechanism for users to reserve properties and manage booking details.
+4.Payment Processing: Integrate a payment system to handle transactions and record payment details.
+5.Review System: Allow users to leave reviews and ratings for properties.
+6.Data Optimization: Ensure efficient data retrieval and storage through database optimizations.
 
 ## Team Roles
 
@@ -85,14 +70,135 @@ A skilled test automation engineer would help you choose which parts of an appli
 Even in Agile environments, development and operations teams can be siloed. DevOps engineers serve as a link between the two teams, unifying and automating the software delivery process and helping strike a balance between introducing changes quickly and keeping an application stable. Working together with software developers, system administrators, and operational staff, DevOps engineers oversee and facilitate code releases on a CI/CD basis.
 
 ## Technology Stack Descriptions
-Docker – Provides containerization to package and run applications consistently across different environments.
+1.Django: A high-level Python web framework used for building the RESTful API.
+2.Django REST Framework: Provides tools for creating and managing RESTful APIs.
+3.PostgreSQL: A powerful relational database used for data storage.
+4.GraphQL: Allows for flexible and efficient querying of data.
+5.Celery: For handling asynchronous tasks such as sending notifications or processing payments.
+6.Redis: Used for caching and session management.
+7.Docker: Containerization tool for consistent development and deployment environments.
+8.CI/CD Pipelines: Automated pipelines for testing and deploying code changes.
 
-Django – A Python web framework for building secure, scalable, and maintainable web applications quickly.
 
-PostgreSQL – An open-source relational database system known for reliability, advanced features, and standards compliance.
+## Database Design
+1. Users
 
-MySQL – A widely used open-source relational database management system optimized for speed and ease of use.
+Fields:
 
-GraphQL – A query language and runtime that enables efficient, flexible data fetching from APIs.
+id (unique identifier)
 
-GitHub – A platform for hosting, version-controlling, and collaborating on code projects using Git.
+name (full name)
+
+email (unique login credential)
+
+role (guest, host, or both)
+
+created_at (account creation date)
+
+Relationships:
+
+A User can list multiple Properties (if host).
+
+A User can make multiple Bookings (if guest).
+
+A User can leave multiple Reviews.
+
+A User can make multiple Payments (for bookings).
+
+2. Properties
+
+Fields:
+
+id (unique identifier)
+
+title (property name/short description)
+
+location (address or coordinates)
+
+price_per_night (rate set by host)
+
+host_id (foreign key → User)
+
+Relationships:
+
+A Property belongs to one User (host).
+
+A Property can have multiple Bookings.
+
+A Property can receive multiple Reviews.
+
+3. Bookings
+
+Fields:
+
+id (unique identifier)
+
+property_id (foreign key → Property)
+
+user_id (foreign key → User who books)
+
+start_date (check-in)
+
+end_date (check-out)
+
+Relationships:
+
+A Booking belongs to one Property.
+
+A Booking belongs to one User (guest).
+
+A Booking can have one Payment.
+
+4. Reviews
+
+Fields:
+
+id (unique identifier)
+
+user_id (foreign key → User who wrote the review)
+
+property_id (foreign key → Property being reviewed)
+
+rating (e.g., 1–5 stars)
+
+comment (text review)
+
+Relationships:
+
+A Review belongs to one User (reviewer).
+
+A Review belongs to one Property.
+
+A Property can have many Reviews.
+
+5. Payments
+
+Fields:
+
+id (unique identifier)
+
+booking_id (foreign key → Booking)
+
+amount (total paid)
+
+payment_method (credit card, PayPal, etc.)
+
+status (pending, completed, failed)
+
+Relationships:
+
+A Payment belongs to one Booking.
+
+A User (guest) makes the Payment for their Booking.
+
+✅ Entity Relationship Summary:
+
+A User can be a Host (owns Properties) or a Guest (makes Bookings).
+
+A Property is listed by a Host (User) and can have many Bookings and Reviews.
+
+A Booking links a Guest (User) to a Property and has an associated Payment.
+
+A Review links a Guest (User) to a Property.
+
+A Payment is tied to a Booking and made by a Guest (User).
