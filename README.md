@@ -86,23 +86,16 @@ Even in Agile environments, development and operations teams can be siloed. DevO
 Fields:
 
 id (unique identifier)
-
 name (full name)
-
 email (unique login credential)
-
 role (guest, host, or both)
-
 created_at (account creation date)
 
 Relationships:
 
 A User can list multiple Properties (if host).
-
 A User can make multiple Bookings (if guest).
-
 A User can leave multiple Reviews.
-
 A User can make multiple Payments (for bookings).
 
 2. Properties
@@ -110,21 +103,15 @@ A User can make multiple Payments (for bookings).
 Fields:
 
 id (unique identifier)
-
 title (property name/short description)
-
 location (address or coordinates)
-
 price_per_night (rate set by host)
-
 host_id (foreign key → User)
 
 Relationships:
 
 A Property belongs to one User (host).
-
 A Property can have multiple Bookings.
-
 A Property can receive multiple Reviews.
 
 3. Bookings
@@ -132,21 +119,15 @@ A Property can receive multiple Reviews.
 Fields:
 
 id (unique identifier)
-
 property_id (foreign key → Property)
-
 user_id (foreign key → User who books)
-
 start_date (check-in)
-
 end_date (check-out)
 
 Relationships:
 
 A Booking belongs to one Property.
-
 A Booking belongs to one User (guest).
-
 A Booking can have one Payment.
 
 4. Reviews
@@ -154,21 +135,15 @@ A Booking can have one Payment.
 Fields:
 
 id (unique identifier)
-
 user_id (foreign key → User who wrote the review)
-
 property_id (foreign key → Property being reviewed)
-
 rating (e.g., 1–5 stars)
-
 comment (text review)
 
 Relationships:
 
 A Review belongs to one User (reviewer).
-
 A Review belongs to one Property.
-
 A Property can have many Reviews.
 
 5. Payments
@@ -176,29 +151,71 @@ A Property can have many Reviews.
 Fields:
 
 id (unique identifier)
-
 booking_id (foreign key → Booking)
-
 amount (total paid)
-
 payment_method (credit card, PayPal, etc.)
-
 status (pending, completed, failed)
 
 Relationships:
 
 A Payment belongs to one Booking.
-
 A User (guest) makes the Payment for their Booking.
 
 ✅ Entity Relationship Summary:
 
 A User can be a Host (owns Properties) or a Guest (makes Bookings).
-
 A Property is listed by a Host (User) and can have many Bookings and Reviews.
-
 A Booking links a Guest (User) to a Property and has an associated Payment.
-
 A Review links a Guest (User) to a Property.
-
 A Payment is tied to a Booking and made by a Guest (User).
+
+## Feature Breakdown
+1. API Documentation
+
+The backend APIs are documented using the OpenAPI standard, ensuring developers have clear and structured guidelines for integration. By leveraging Django REST Framework for RESTful APIs and GraphQL for flexible queries, the system supports both standard CRUD operations and optimized data fetching, making the platform easier to extend and integrate with third-party tools.
+
+OpenAPI Standard: The backend APIs are documented using the OpenAPI standard to ensure clarity and ease of integration.
+Django REST Framework: Provides a comprehensive RESTful API for handling CRUD operations on user and property data.
+GraphQL: Offers a flexible and efficient query mechanism for interacting with the backend.
+
+2. User Authentication
+
+This feature provides endpoints to register, authenticate, and manage user accounts securely. It ensures that only verified users can access protected resources, while allowing both hosts and guests to maintain profiles essential for property management and bookings.
+
+Endpoints: /users/, /users/{user_id}/
+Features: Register new users, authenticate, and manage user profiles.
+
+3. Property Management
+
+Property management enables hosts to create, update, retrieve, and delete property listings. It forms the backbone of the application by providing guests with access to available accommodations and giving hosts full control over their listings.
+
+Endpoints: /properties/, /properties/{property_id}/
+Features: Create, update, retrieve, and delete property listings.
+
+4. Booking System
+
+The booking system allows guests to make reservations, update booking details, and manage check-in/check-out records. It ensures smooth coordination between guests and hosts, while also linking seamlessly with payments and property availability.
+
+Endpoints: /bookings/, /bookings/{booking_id}/
+Features: Make, update, and manage bookings, including check-in and check-out details.
+
+5. Payment Processing
+
+This feature manages all financial transactions tied to bookings, including payment initiation, tracking, and status updates. By handling payments securely and efficiently, it builds trust between guests and hosts while ensuring smooth revenue flow.
+
+Endpoints: /payments/
+Features: Handle payment transactions related to bookings.
+
+6. Review System
+
+The review system allows guests to share feedback on their stays by posting ratings and comments. It promotes transparency and trust on the platform, helping future guests make informed decisions and motivating hosts to maintain high-quality standards.
+
+Endpoints: /reviews/, /reviews/{review_id}/
+Features: Post and manage reviews for properties.
+
+7. Database Optimizations
+
+Through indexing and caching strategies, the platform improves query performance and reduces server load. This ensures that frequently accessed data, such as property searches and booking records, is retrieved quickly, resulting in a smoother user experience.
+
+Indexing: Implement indexes for fast retrieval of frequently accessed data.
+Caching: Use caching strategies to reduce database load and improve performance.
