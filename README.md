@@ -17,6 +17,7 @@ This project is tailored to enhance your expertise in modern software developmen
 
 Docker
 Django
+PostgreSQL
 MySQL
 GraphQL
 Github
@@ -82,3 +83,16 @@ A skilled test automation engineer would help you choose which parts of an appli
 
 9.DevOps Engineer
 Even in Agile environments, development and operations teams can be siloed. DevOps engineers serve as a link between the two teams, unifying and automating the software delivery process and helping strike a balance between introducing changes quickly and keeping an application stable. Working together with software developers, system administrators, and operational staff, DevOps engineers oversee and facilitate code releases on a CI/CD basis.
+
+## Technology Stack Descriptions
+Docker – Provides containerization to package and run applications consistently across different environments.
+
+Django – A Python web framework for building secure, scalable, and maintainable web applications quickly.
+
+PostgreSQL – An open-source relational database system known for reliability, advanced features, and standards compliance.
+
+MySQL – A widely used open-source relational database management system optimized for speed and ease of use.
+
+GraphQL – A query language and runtime that enables efficient, flexible data fetching from APIs.
+
+GitHub – A platform for hosting, version-controlling, and collaborating on code projects using Git.
