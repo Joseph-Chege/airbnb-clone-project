@@ -33,23 +33,29 @@ Github
 ## Team Roles
 
 1.Business Analyst
+
 A business analyst dives deep into a customer’s workflows and analyzes stakeholder feedback to help a client formulate what their wants look like and align a customer’s vision with what a development team is producing. They translate an abstract product idea into a set of tangible requirements. A business analyst may step in even before a software development team structure is defined and continue to bridge the gap between the customer and the team during later stages of development.
 
 2.Product Owner
+
 Holding more responsibility for a product’s success than any other development team member, a product owner is a decision-maker. Balancing both business needs and market trends, they define a business strategy, shape up the product vision, make sure it satisfies customer needs, and manage a product backlog.
 
 3.Project Manager
+
 In sequential models, a project manager is responsible for distributing tasks across team members, planning work activities, and updating project status.
 
 In Agile projects where the focus is on self-management, transparency, and shared ownership, a PM sets up the vision of a product, maintains transparency, fosters communication, searches for improvements in the development process, and makes sure a team delivers more value with each iteration.
 
 4.UI/UX Designer
+
 A UI designer devises intuitive, easy-to-use, and eye-pleasing interfaces for a product, while the UX part stands for thinking out an entire journey of a user’s interaction with a product. A UX designer is thus involved in such activities as user research, persona development, information architecture design, wireframing, prototyping, and more.
 
 5.Software Architect
+
 An architect is an expert-level software engineer who makes executive software design decisions on behalf of an app development team. You will need one if you deal with a software product with complex requirements or legacy software that calls for profound changes. A software architect decides which services and databases should communicate together, how integrations should work, and how to ensure that the product is secure and stable.
 
 6.Software Developer
+
 A software developer does the actual job and codes an application. And just like an app features a front end and a back end, there are front-end and back-end developers.
 
 Front-end developers create the part of an application that users interact with, ensuring that an app offers an equally smooth experience to all—no matter the device, platform, or operational system.
@@ -59,14 +65,17 @@ Back-end developers, in turn, implement the core of an app—its algorithms and 
 There are full-stack developers as well. They can handle all the work at once—from clients to servers to databases and all the needed integrations.
 
 7.Quality Assurance Engineer
+
 The job of a quality assurance engineer is to verify whether an application meets the requirements—both functional and non-functional. Functional requirements define what an application should do, while non-functional requirements specify how it should do that. To verify both, QA specialists run various checks, followed by analyzing the test results and reporting on the application quality.
 
 8.Test Automation Engineer
+
 A test automation engineer is there to help you test faster and better. To enable that, they develop test automation scripts—small programs that provide reliable and continuous feedback on application quality without any human involvement.
 
 A skilled test automation engineer would help you choose which parts of an application are suitable candidates for automation and what’s better to be tested manually.
 
 9.DevOps Engineer
+
 Even in Agile environments, development and operations teams can be siloed. DevOps engineers serve as a link between the two teams, unifying and automating the software delivery process and helping strike a balance between introducing changes quickly and keeping an application stable. Working together with software developers, system administrators, and operational staff, DevOps engineers oversee and facilitate code releases on a CI/CD basis.
 
 ## Technology Stack Descriptions
@@ -219,3 +228,39 @@ Through indexing and caching strategies, the platform improves query performance
 
 Indexing: Implement indexes for fast retrieval of frequently accessed data.
 Caching: Use caching strategies to reduce database load and improve performance.
+
+## API Security
+1. Authentication
+
+Implementation: Secure login and registration using hashed passwords (e.g., bcrypt/Argon2), multi-factor authentication (MFA), and token-based sessions (JWT or OAuth2).
+Why Crucial: Ensures only legitimate users access the system, protecting sensitive user data such as emails, booking history, and payment details.
+
+2. Authorization
+
+Implementation: Role-based access control (RBAC) to distinguish between hosts, guests, and administrators, with fine-grained permissions.
+Why Crucial: Prevents users from accessing resources they shouldn’t (e.g., one guest modifying another guest’s booking or payment).
+
+3. Data Encryption
+
+Implementation: Use HTTPS (TLS/SSL) for secure communication and encrypt sensitive data at rest (e.g., payment details, personal data).
+Why Crucial: Protects sensitive data from interception during transmission and unauthorized access in storage.
+
+4. Rate Limiting & Throttling
+
+Implementation: Limit the number of API requests per user/IP in a given timeframe.
+Why Crucial: Prevents denial-of-service (DoS) attacks and brute-force attempts on authentication endpoints.
+
+5. Input Validation & Sanitization
+
+Implementation: Validate all API inputs, sanitize user-generated content, and use ORM features to prevent SQL injection.
+Why Crucial: Protects against common attacks such as SQL injection, XSS, and code injection, ensuring data integrity.
+
+6. Secure Payments Handling
+
+Implementation: Use PCI-DSS compliant third-party payment gateways (e.g., Stripe, PayPal) instead of storing card details directly.
+Why Crucial: Reduces liability by outsourcing sensitive financial data handling while ensuring safe, verified transactions.
+
+7. Logging & Monitoring
+
+Implementation: Maintain detailed logs of authentication attempts, failed payments, and suspicious activities, with alerting mechanisms.
+Why Crucial: Helps detect breaches or fraudulent behavior early and provides traceability for security audits.
